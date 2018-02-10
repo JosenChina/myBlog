@@ -1,0 +1,6 @@
+尊敬的{{ uu.name }}：
+            欢迎来到Josen博客网站，请进入此链接
+                {{ url_for('user.confirm', token=token, _external=True) }}
+
+                激活您的账户！
+            谢谢使用！

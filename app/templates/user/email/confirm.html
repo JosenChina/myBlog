@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block page_content%}
+    <div class="page-header">
+        <h1>邮件确认</h1>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">用户名：{{ uu.username }}</h3>
+        </div>
+        <div class="panel-body">
+            <h3>尊敬的{{ uu.name }}：</h3>
+            <p>欢迎来到Josen博客网站，请点击
+                <a href="{{ url_for('user.confirm', token=token, _external=True) }}">
+                    这里
+                </a>激活您的账户！ </p>
+            <p>谢谢使用！</p>
+        </div>
+    </div>
+
+{% endblock %}

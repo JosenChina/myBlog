@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block page_content %}
+{{ super() }}
+<h1>邮件未确认</h1>
+<a href="{{ url_for('user.resend_confirmation') }}">重新发送</a>
+{% endblock %}

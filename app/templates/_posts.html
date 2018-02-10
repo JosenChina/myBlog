@@ -1,0 +1,49 @@
+<ul class="posts">
+        {% for post in posts %}
+        <li class="post">
+            <div class="post-content">
+                <div class="post-thumbnail">
+                    <a href="{{ url_for('user.user_center', username=post.author.username) }}">
+                        <img class="img-rounded profile-thumbnail"
+                             src="{{ post.author.gravatar(size=40) }}">
+                    </a>
+                </div>
+                <div class="post-content">
+                <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
+                <div class="post-author">
+                    <a href="{{ url_for('user.user_center', username=post.author.username) }}">
+                        &nbsp;&nbsp;{{ post.author.username }}
+                    </a>
+                </div>
+                <div class="post-body">
+                {% if post.body_html %}
+                    {{ post.body_html | safe }}
+                {% else %}
+                    {{ post.body }}
+                {% endif %}
+                </div>
+
+                <div class="post-footer">
+                    <a href="{{ url_for('main.post', id=post.id) }}">
+                        <span class="labe l label-warning">{{ post.comments.count() }}评论</span>
+                    </a>
+                    <a href="{{ url_for('main.post', id=post.id) }}">
+                        <span class="label label-default">点击查看</span>
+                    </a>
+                    {% if current_user == post.author %}
+                    <a href="{{ url_for('main.edit', id=post.id) }}">
+                        <span class="label label-primary">更改博客</span>
+                    </a>
+                    {% elif current_user.is_administrator() %}
+                        <a href="{{ url_for('main.edit', id=post.id) }}">
+                            <span class="label label-danger">更改博客[管理员]</span>
+                        </a>
+                    {% endif %}
+
+                </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>

@@ -2,6 +2,13 @@
 # filename : __init.py
 
 from flask import Blueprint
-main = Blueprint('main', __name__)
+_main = Blueprint('main', __name__)
 
-from .login import *
+from .view import *
+from .errors import *
+from app.models.Role import Permission
+
+
+@_main.app_context_processor
+def inject_permission():
+    return dict(Permission=Permission)
