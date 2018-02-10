@@ -3,7 +3,9 @@
 
 import unittest
 from app.models import *
-from app import create_app
+from app.models.Role import Permission
+from app.models.User import AnonymousUser
+from app import create_app, db
 
 
 class UserModelTestCase(unittest.TestCase):
